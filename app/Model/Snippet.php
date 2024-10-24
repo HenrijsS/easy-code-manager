@@ -347,7 +347,10 @@ class Snippet
             return new \WP_Error('file_exists', 'Please try a different name');
         }
 
-        $docBlockString = $this->parseInputMeta($metaData, true);
+	    $metaData["created_at"] = date( 'Y-m-d H:i:s' );
+	    $metaData["updated_at"] = $metaData["created_at"];
+
+	    $docBlockString = $this->parseInputMeta( $metaData, true );
 
         $fullCode = $docBlockString . $code;
 
